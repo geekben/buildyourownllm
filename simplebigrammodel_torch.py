@@ -8,10 +8,12 @@ torch.manual_seed(42)
 
 prompts = ["春江", "往事"]
 max_new_token = 100
-max_iters = 5000
+# 改为对齐python版本，实验对比耗时：notes/experiment_simplebigrammodel_python_vs_torch.md
+max_iters = 8000
 batch_size = 32
 block_size = 8
 
+# 改为cuda运行报错，耗时3m多
 device = 'cpu' #'cuda' if torch.cuda.is_available() else 'mps' if torch.mps.is_available() else 'cpu'
 
 with open('ci.txt', 'r', encoding='utf-8') as f:
@@ -23,10 +25,10 @@ class Tokenizer:
         self.vocab_size = len(self.chars)
         self.stoi = {ch: i for i, ch in enumerate(self.chars)}
         self.itos = {i: ch for i, ch in enumerate(self.chars)}
-    
+
     def encode(self, s: str) -> List[int]:
         return [self.stoi[c] for c in s]
-    
+
     def decode(self, l: List[int]) -> str:
         return ''.join([self.itos[i] for i in l])
 
@@ -35,10 +37,10 @@ class BigramLanguageModel():
         self.vocab_size = vocab_size
         # 参见 notes/pytorch_vs_python_list.md 了解 PyTorch 张量 vs Python 列表的优化细节
         self.transition = torch.zeros((vocab_size, vocab_size), device=device)
-    
+
     def __call__(self, x):
         return self.forward(x)
-    
+
     def forward(self, idx: torch.Tensor) -> torch.Tensor:
         # idx shape: (B, T)
         B, T = idx.shape
