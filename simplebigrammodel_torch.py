@@ -33,6 +33,7 @@ class Tokenizer:
 class BigramLanguageModel():
     def __init__(self, vocab_size: int):
         self.vocab_size = vocab_size
+        # 参见 notes/pytorch_vs_python_list.md 了解 PyTorch 张量 vs Python 列表的优化细节
         self.transition = torch.zeros((vocab_size, vocab_size), device=device)
     
     def __call__(self, x):
@@ -51,6 +52,7 @@ class BigramLanguageModel():
         for _ in range(max_new_tokens):
             # 获取最后一个token的预测
             logits = self(idx)[:, -1, :]  # (B, vocab_size)
+            # 参见 notes/torch_clamp_multinomial.md 了解 torch.clamp 和 torch.multinomial 的用法
             # 将计数转换为概率
             probs = logits / torch.clamp(logits.sum(dim=-1, keepdim=True), min=1.0)
             # 采样下一个token
