@@ -1,4 +1,5 @@
 import torch
+# 参见 notes/babygpt_v1_vs_simplebigrammodel.md 了解与 SimpleBigramModel 的对比分析
 import torch.nn as nn
 from torch.nn import functional as F
 from typing import List
@@ -29,13 +30,13 @@ class Tokenizer:
         self.vocab_size = len(self.chars)
         self.stoi = {ch: i for i, ch in enumerate(self.chars)}
         self.itos = {i: ch for i, ch in enumerate(self.chars)}
-    
+
     def encode(self, s: str) -> List[int]:
         return [self.stoi[c] for c in s]
-    
+
     def decode(self, l: List[int]) -> str:
         return ''.join([self.itos[i] for i in l])
-    
+
 class BabyGPT(nn.Module):
 
     def __init__(self, vocab_size: int, n_embd: int):
@@ -79,6 +80,7 @@ def get_batch(data, batch_size, block_size):
     x, y = x.to(device), y.to(device)
     return x, y
 
+# 参见 notes/estimate_loss_and_cross_entropy.md 了解 estimate_loss 函数和交叉熵损失函数
 @torch.no_grad()
 def estimate_loss(model, data, batch_size, block_size, eval_iters):
     '''
