@@ -44,7 +44,7 @@ babygpt_sample_with_kvcache.py    # KV Cache 推理优化
 | `simplemodel.py` | 最简单的 Bigram 统计模型，纯 Python 实现 | |
 | `simplemodel_with_comments.py` | `simplemodel.py` 的详细注释版本 | `notes/random_choices_and_shuffle.md` |
 | `simplebigrammodel.py` | 加入 Tokenizer 封装，结构更清晰 | |
-| `simplebigrammodel_with_comments.py` | `simplebigrammodel.py` 的详细注释版本 | |
+| `simplebigrammodel_with_comments.py` | `simplebigrammodel.py` 的详细注释版本 | `notes/batch_size_and_block_size.md` |
 | `simplebigrammodel_torch.py` | 用 PyTorch 张量重写统计模型 | `notes/pytorch_vs_python_list.md`<br>`notes/torch_clamp_multinomial.md`<br>`notes/experiment_simplebigrammodel_python_vs_torch.md` |
 | `pytorch_5min.py` | PyTorch 梯度下降入门 | `notes/pytorch_training_mechanism.md` |
 
@@ -53,7 +53,7 @@ babygpt_sample_with_kvcache.py    # KV Cache 推理优化
 | 文件 | 引入的新概念 | 学习笔记 |
 |------|-------------|----------|
 | `babygpt_v1.py` | **Embedding + Linear**，从统计计数转向神经网络，引入梯度下降训练 | `notes/babygpt_v1_vs_simplebigrammodel.md`<br>`notes/estimate_loss_and_cross_entropy.md` |
-| `babygpt_v2_position.py` | **Position Embedding**，让模型感知 token 的位置信息 | `notes/batch_size_and_block_size.md` |
+| `babygpt_v2_position.py` | **Position Embedding**，让模型感知 token 的位置信息 | `notes/babygpt_v2_position_embedding.md` |
 | `babygpt_v3_self_attention.py` | **Self-Attention**，token 之间可以互相"交流" | |
 | `babygpt_v4_multihead_attention.py` | **Multi-Head Attention**，多个注意力头并行捕捉不同模式 | |
 | `babygpt_v5_feedforward.py` | **Feed-Forward Network**，增加非线性变换能力 | |
@@ -91,12 +91,13 @@ Input → Token Embedding + Position Embedding
 - `estimate_loss_and_cross_entropy.md` - estimate_loss 函数与交叉熵损失详解
 - `random_choices_and_shuffle.md` - Python 随机采样函数对比
 
+**模型演进**
+- `babygpt_v1_vs_simplebigrammodel.md` - BabyGPT v1 与 Bigram 模型对比分析
+- `babygpt_v2_position_embedding.md` - v2 位置编码原理详解
+
 **实验记录**
 - `experiment_simplebigrammodel_python_vs_torch.md` - Python vs PyTorch 实现对比实验
 - `experiment_babygpt_v11_on_T4_GPU.md` - T4 GPU 训练实验记录
-
-**模型对比**
-- `babygpt_v1_vs_simplebigrammodel.md` - BabyGPT v1 与 Bigram 模型对比分析
 
 **工具用法**
 - `torch_clamp_multinomial.md` - torch.clamp 和 torch.multinomial 用法
