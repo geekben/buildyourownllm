@@ -1,3 +1,15 @@
+"""
+BabyGPT v3: Self-Attention 自注意力机制
+
+引入 Self-Attention，让 token 之间可以互相"交流"。
+每个 token 的输出不再只是它自己的 embedding，而是与序列中所有之前 token 的加权组合。
+
+学习笔记：
+- notes/babygpt_v3_head_class_explained.md - Head 类详解：自注意力机制的实现
+- notes/babygpt_v3_head_size_vs_n_embed.md - head_size 与 n_embed 的关系
+- notes/babygpt_v3_self_attention_and_block_size.md - 自注意力与 block_size（上下文窗口）
+"""
+
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
@@ -13,7 +25,7 @@ max_iters = 5000 # 训练的最大迭代次数
 eval_iters = 100 # 评估的迭代次数
 eval_interval = 200 # 评估的间隔
 batch_size = 32 # 每个批次的大小
-block_size = 8 # 每个序列的最大长度
+block_size = 8 # 每个序列的最大长度，即上下文窗口大小
 learning_rate = 1e-2 # 学习率
 n_embed = 32 # 嵌入层的维度
 tain_data_ratio = 0.9 # 训练数据占数据集的比例，剩下的是验证数据
@@ -37,6 +49,10 @@ class Tokenizer:
         return ''.join([self.itos[i] for i in l])
 
 class Head(nn.Module):
+    """单头自注意力机制
+    
+    详见 notes/babygpt_v3_head_class_explained.md
+    """
     def __init__(self, head_size):
         super().__init__()
         self.key = nn.Linear(n_embed, head_size, bias=False)
@@ -62,7 +78,7 @@ class BabyGPT(nn.Module):
         super().__init__()
         self.block_size = block_size
         self.token_embedding_table = nn.Embedding(vocab_size, n_embd) # 嵌入层，把token映射到n_embd维空间
-        self.postion_embedding_table = nn.Embedding(block_size, n_embed) # 建设一个“位置”映射关系
+        self.postion_embedding_table = nn.Embedding(block_size, n_embed) # 建设一个"位置"映射关系
         self.sa_head = Head(n_embed) # self-attention 头
         self.lm_head = nn.Linear(n_embd, vocab_size) # 线性层，把n_embd维空间映射到vocab_size维空间，
 
@@ -72,7 +88,7 @@ class BabyGPT(nn.Module):
         idx = idx[:, -T:] # 不管输入的序列有多长，我们只取最后的block_size个token
         tok_emb = self.token_embedding_table(idx) # 获得token的嵌入表示 (B,T,n_embd)
         pos_emb = self.postion_embedding_table(torch.arange(T, device=idx.device)) # 获得位置的嵌入表示 (T,n_embd)
-        x = tok_emb + pos_emb # 给token的嵌入表示加上位置的嵌入表示，x有了“位置”信息！
+        x = tok_emb + pos_emb # 给token的嵌入表示加上位置的嵌入表示，x有了"位置"信息！
         x = self.sa_head(x) # self-attention
         logits = self.lm_head(x) # 通过线性层，把embedding结果重新映射回vocab_size维空间 (B,T,vocab_size)
 

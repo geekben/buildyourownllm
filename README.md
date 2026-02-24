@@ -54,7 +54,7 @@ babygpt_sample_with_kvcache.py    # KV Cache 推理优化
 |------|-------------|----------|
 | `babygpt_v1.py` | **Embedding + Linear**，从统计计数转向神经网络，引入梯度下降训练 | `notes/babygpt_v1_vs_simplebigrammodel.md`<br>`notes/estimate_loss_and_cross_entropy.md` |
 | `babygpt_v2_position.py` | **Position Embedding**，让模型感知 token 的位置信息 | `notes/babygpt_v2_position_embedding.md` |
-| `babygpt_v3_self_attention.py` | **Self-Attention**，token 之间可以互相"交流" | |
+| `babygpt_v3_self_attention.py` | **Self-Attention**，token 之间可以互相"交流" | `notes/babygpt_v3_head_class_explained.md`<br>`notes/babygpt_v3_head_size_vs_n_embed.md`<br>`notes/babygpt_v3_self_attention_and_block_size.md` |
 | `babygpt_v4_multihead_attention.py` | **Multi-Head Attention**，多个注意力头并行捕捉不同模式 | |
 | `babygpt_v5_feedforward.py` | **Feed-Forward Network**，增加非线性变换能力 | |
 | `babygpt_v6_block.py` | **Transformer Block**，将 Attention + FFN 封装为可堆叠的模块 | |
@@ -94,6 +94,9 @@ Input → Token Embedding + Position Embedding
 **模型演进**
 - `babygpt_v1_vs_simplebigrammodel.md` - BabyGPT v1 与 Bigram 模型对比分析
 - `babygpt_v2_position_embedding.md` - v2 位置编码原理详解
+- `babygpt_v3_head_class_explained.md` - v3 Head 类详解：自注意力机制的实现
+- `babygpt_v3_head_size_vs_n_embed.md` - head_size 与 n_embed 的关系
+- `babygpt_v3_self_attention_and_block_size.md` - 自注意力与 block_size（上下文窗口）
 
 **实验记录**
 - `experiment_simplebigrammodel_python_vs_torch.md` - Python vs PyTorch 实现对比实验
