@@ -69,7 +69,7 @@ babygpt_sample_with_kvcache.py    # KV Cache 推理优化
 
 | 文件 | 说明 | 学习笔记 |
 |------|------|----------|
-| `babygpt_sample_with_kvcache.py` | **KV Cache** 推理优化，加载训练好的模型进行交互式生成 | |
+| `babygpt_sample_with_kvcache.py` | **KV Cache** 推理优化，加载训练好的模型进行交互式生成 | `notes/kv_cache_principle.md` |
 
 ## 最终模型架构
 
@@ -97,6 +97,9 @@ Input → Token Embedding + Position Embedding
 - `babygpt_v3_head_class_explained.md` - v3 Head 类详解：自注意力机制的实现
 - `babygpt_v3_head_size_vs_n_embed.md` - head_size 与 n_embed 的关系
 - `babygpt_v3_self_attention_and_block_size.md` - 自注意力与 block_size（上下文窗口）
+
+**推理优化**
+- `kv_cache_principle.md` - KV Cache 原理：推理优化的关键洞察
 
 **实验记录**
 - `experiment_simplebigrammodel_python_vs_torch.md` - Python vs PyTorch 实现对比实验
