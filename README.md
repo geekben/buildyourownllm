@@ -57,7 +57,7 @@ babygpt_sample_with_kvcache.py    # KV Cache 推理优化
 | `babygpt_v3_self_attention.py` | **Self-Attention**，token 之间可以互相"交流" | `notes/babygpt_v3_head_class_explained.md`<br>`notes/babygpt_v3_head_size_vs_n_embed.md`<br>`notes/babygpt_v3_self_attention_and_block_size.md` |
 | `babygpt_v4_multihead_attention.py` | **Multi-Head Attention**，多个注意力头并行捕捉不同模式 | `notes/babygpt_v4_multihead_attention.md` |
 | `babygpt_v5_feedforward.py` | **Feed-Forward Network**，增加非线性变换能力 | `notes/babygpt_v5_feedforward.md` |
-| `babygpt_v6_block.py` | **Transformer Block**，将 Attention + FFN 封装为可堆叠的模块 | |
+| `babygpt_v6_block.py` | **Transformer Block**，将 Attention + FFN 封装为可堆叠的模块 | `notes/babygpt_v6_block.md` |
 | `babygpt_v7_residual_connection.py` | **残差连接**，缓解深层网络的梯度消失问题 | |
 | `babygpt_v8_projection.py` | **投影层**，Multi-Head 输出映射回原始维度 | |
 | `babygpt_v9_layer_norm.py` | **Layer Normalization**，稳定训练过程 | |
@@ -97,6 +97,7 @@ Input → Token Embedding + Position Embedding
 - `babygpt_v3_head_class_explained.md` - v3 Head 类详解：自注意力机制的实现
 - `babygpt_v3_head_size_vs_n_embed.md` - head_size 与 n_embed 的关系
 - `babygpt_v3_self_attention_and_block_size.md` - 自注意力与 block_size（上下文窗口）
+- `babygpt_v6_block.md` - v6 Block 封装：模块化堆叠 Transformer 层
 
 **推理优化**
 - `kv_cache_principle.md` - KV Cache 原理：推理优化的关键洞察
