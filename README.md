@@ -62,8 +62,8 @@ babygpt_sample_with_kvcache.py    # KV Cache 推理优化
 | `babygpt_v8_projection.py` | **投影层**，Multi-Head 输出映射回原始维度 | `notes/babygpt_v8_projection.md` |
 | `babygpt_v9_layer_norm.py` | **Layer Normalization**，稳定训练过程 | `notes/babygpt_v9_layer_norm.md` |
 | `babygpt_v10_dropout.py` | **Dropout**，正则化防止过拟合 | `notes/babygpt_v10_dropout.md` |
-| `babygpt_v11_hyper_params.py` | **超参数调优**，6 层 6 头 384 维的完整配置 | `notes/experiment_babygpt_v11_on_T4_GPU.md` |
-| `babygpt_v12_wandb.py` | **Wandb 集成**，可视化训练过程 | |
+| `babygpt_v11_hyper_params.py` | **超参数调优**，6 层 6 头 384 维的完整配置 | `notes/babygpt_v11_hyper_params.md`<br>`notes/experiment_babygpt_v11_on_T4_GPU.md` |
+| `babygpt_v12_wandb.py` | **Wandb 集成**，可视化训练过程 | `notes/babygpt_v12_wandb.md` |
 
 ### 阶段三：推理优化
 
@@ -102,6 +102,8 @@ Input → Token Embedding + Position Embedding
 - `babygpt_v8_projection.md` - v8 投影层与 FFN 扩展结构
 - `babygpt_v9_layer_norm.md` - v9 Layer Normalization：稳定训练过程
 - `babygpt_v10_dropout.md` - v10 Dropout：防止过拟合，打断捷径学习
+- `babygpt_v11_hyper_params.md` - v11 超参数调优：从玩具到实用模型
+- `babygpt_v12_wandb.md` - v12 Wandb 实验跟踪：工程化实践
 
 **推理优化**
 - `kv_cache_principle.md` - KV Cache 原理：推理优化的关键洞察
