@@ -60,7 +60,7 @@ babygpt_sample_with_kvcache.py    # KV Cache 推理优化
 | `babygpt_v6_block.py` | **Transformer Block**，将 Attention + FFN 封装为可堆叠的模块 | `notes/babygpt_v6_block.md` |
 | `babygpt_v7_residual_connection.py` | **残差连接**，缓解深层网络的梯度消失问题 | `notes/babygpt_v7_residual_connection.md` |
 | `babygpt_v8_projection.py` | **投影层**，Multi-Head 输出映射回原始维度 | `notes/babygpt_v8_projection.md` |
-| `babygpt_v9_layer_norm.py` | **Layer Normalization**，稳定训练过程 | |
+| `babygpt_v9_layer_norm.py` | **Layer Normalization**，稳定训练过程 | `notes/babygpt_v9_layer_norm.md` |
 | `babygpt_v10_dropout.py` | **Dropout**，正则化防止过拟合 | |
 | `babygpt_v11_hyper_params.py` | **超参数调优**，6 层 6 头 384 维的完整配置 | `notes/experiment_babygpt_v11_on_T4_GPU.md` |
 | `babygpt_v12_wandb.py` | **Wandb 集成**，可视化训练过程 | |
@@ -100,6 +100,7 @@ Input → Token Embedding + Position Embedding
 - `babygpt_v6_block.md` - v6 Block 封装：模块化堆叠 Transformer 层
 - `babygpt_v7_residual_connection.md` - v7 残差连接：解决深层网络梯度消失
 - `babygpt_v8_projection.md` - v8 投影层与 FFN 扩展结构
+- `babygpt_v9_layer_norm.md` - v9 Layer Normalization：稳定训练过程
 
 **推理优化**
 - `kv_cache_principle.md` - KV Cache 原理：推理优化的关键洞察
